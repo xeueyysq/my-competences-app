@@ -1,14 +1,18 @@
+// components/IndicatorsList.tsx
+import React from 'react';
 import useStore from '../store/useStore';
-import { List, ListItem, ListItemText } from '@mui/material';
+import { List, ListItem, Typography } from '@mui/material';
 
 const IndicatorsList: React.FC = () => {
-  const { indicators } = useStore();
+  const indicators = useStore((state) => state.indicators);
 
   return (
-    <List>
+    <List style={{ width: '100%' }}>
       {indicators.map(indicator => (
-        <ListItem key={indicator.indicator_id} divider>
-          <ListItemText primary={indicator.indicator_info} />
+        <ListItem key={indicator.indicator_id} style={{ display: 'flex', justifyContent: 'center', padding: '10px' }}>
+          <Typography variant="subtitle1">
+            {indicator.indicator_info}
+          </Typography>
         </ListItem>
       ))}
     </List>
